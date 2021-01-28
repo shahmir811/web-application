@@ -3,25 +3,26 @@
     <h1 class="right-side-login-component-title">Bienvenue sur Controlemaboite.fr!</h1>
     <p class="right-side-login-component-subtitle">Veuillez vous connecter à votre compte pour commencer l’aventure.</p>
 
-    <div class="login-form-input">
+    <div class="loginFormInput">
       <a-form-model layout="vertical" :model="form" >
         <a-form-model-item label="Email *">
-            <a-input v-model="form.email" />
+            <a-input v-model="form.email" class="inputForm" />
           </a-form-model-item>  
-        <a-form-model-item label="Mot de passe *">
-            <a-input v-model="form.password" />
+        <a-form-model-item label="Mot de passe *" class="passwordFormModelItem">
+            <a-input v-model="form.password" class="inputForm" />
           </a-form-model-item>
-        <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-          <a-button type="primary" @click="onSubmit">
-            Create
-          </a-button>
-          <a-button style="margin-left: 10px;">
-            Cancel
+        <a-checkbox v-model="form.rememberMe" name="rememberMe" class='rememberMeClass'>
+          Rester connecté
+        </a-checkbox>  
+        <a-form-model-item :wrapper-col="{ span: 24 }">
+          <a-button type="primary" @click="onSubmit" class='submitButton'>
+            Se connecter
           </a-button>
         </a-form-model-item>                      
       </a-form-model>
     </div>
 
+    <a href="#" class="forgotPasswordLink">Mot de passe oublié ?</a>
 
   </div>
 </template>>
@@ -39,6 +40,10 @@ export default {
         layout: 'vertical',
         email: '',
         password: '',
+        rememberMe: false
+      },
+      rules: { 
+
       }
     };
   },
@@ -82,16 +87,47 @@ export default {
   line-height: 149.19%;
 }
 
-.login-form-input {
+.loginFormInput {
   margin-top: 255px;
   width: 80%;
   margin-left: 116px;
 }
 
-.ant-col.ant-form-item-label > label {
-    color: blue !important;
+
+label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px !important;
+  color: @GRAY-9;
 }
 
+.ant-input {
+  width: 320px;
+  height: 40px;  
+}
 
+.submitButton {
+  width: 320px;
+  height: 40px;
+  background: #403EFB;
+  border-radius: 5px;
+  color: @GRAY-1;
+}
+
+.forgotPasswordLink {
+  position: absolute;
+  right: 335px;
+  top: 357px;
+}
+
+.passwordFormModelItem {
+  margin-bottom: 0px
+}
+
+.rememberMeClass {
+  margin-top: 14px;
+  margin-bottom: 66px;
+}
 
 </style>>
