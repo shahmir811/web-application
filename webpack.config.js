@@ -2,8 +2,11 @@
 module.exports = {
 	rules: [
 		{
-			test: /\.less$/,
+			test: /\.less?$/,
 			use: [
+				'vue-style-loader',
+				'css-loader',
+				'less-loader',
 				{
 					loader: 'style-loader',
 				},

@@ -4,22 +4,27 @@
     <p class="right-side-login-component-subtitle">Veuillez vous connecter à votre compte pour commencer l’aventure.</p>
 
     <div class="loginFormInput">
-      <a-form-model layout="vertical" :model="form" >
-        <a-form-model-item label="Email *">
-            <a-input v-model="form.email" class="inputForm" />
-          </a-form-model-item>  
-        <a-form-model-item label="Mot de passe *" class="passwordFormModelItem">
-            <a-input v-model="form.password" class="inputForm" />
-          </a-form-model-item>
-        <a-checkbox v-model="form.rememberMe" name="rememberMe" class='rememberMeClass'>
+      <a-form :layout="formLayout" :form="form" @submit="handleSubmit">
+        <a-form-item label="Email">
+          <a-input
+            v-decorator="['email', { rules: [{ required: true, message: 'Le champ e-mail est obligatoire' }] }]"
+          />
+        </a-form-item>
+        <a-form-item label="Mot de passe" class="inputPasswordFieldDiv">
+          <a-input-password
+            size="large"
+            v-decorator="['password', { rules: [{ required: true, message: 'Le champ du mot de passe est obligatoire' }] }]"
+          />
+        </a-form-item>
+        <a-checkbox v-model="rememberMe" class='rememberMeClass'>
           Rester connecté
-        </a-checkbox>  
-        <a-form-model-item :wrapper-col="{ span: 24 }">
-          <a-button type="primary" @click="onSubmit" class='submitButton'>
+        </a-checkbox>          
+        <a-form-item :wrapper-col="{ span: 24 }">
+          <a-button type="primary" html-type="submit" class='submitButton'>
             Se connecter
           </a-button>
-        </a-form-model-item>                      
-      </a-form-model>
+        </a-form-item>                
+      </a-form>
     </div>
 
     <a href="#" class="forgotPasswordLink">Mot de passe oublié ?</a>
@@ -34,23 +39,19 @@ export default {
   data() {
     return {
       formLayout: 'vertical',
-      labelCol: { span: 4 },
-      wrapperCol: { span: 14 },
-      form: { 
-        layout: 'vertical',
-        email: '',
-        password: '',
-        rememberMe: false
-      },
-      rules: { 
-
-      }
+      rememberMe: false,
+      form: this.$form.createForm(this, { name: 'coordinated' }),
     };
   },
 
   methods: {
-    onSubmit() {
-      console.log('submit!', this.form);
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log('Received values of form: ', values);
+        }
+      });
     },
   }, 
 
@@ -102,9 +103,13 @@ label {
   color: @GRAY-9;
 }
 
-.ant-input {
-  width: 320px;
-  height: 40px;  
+.ant-input{
+  width: 320px !important;
+  height: 40px !important;
+}
+
+.ant-input-password {
+  width: 320px !important;
 }
 
 .submitButton {
@@ -121,7 +126,7 @@ label {
   top: 357px;
 }
 
-.passwordFormModelItem {
+.inputPasswordFieldDiv {
   margin-bottom: 0px
 }
 

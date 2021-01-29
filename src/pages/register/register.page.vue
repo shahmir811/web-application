@@ -1,27 +1,26 @@
 <template>
   <div class="flexContainer">
+    
     <div class="column">
-      <LeftSideLogin></LeftSideLogin>
+      <LeftSide></LeftSide>
     </div>
     <div class="column">
-      <RightSideLogin class="column"></RightSideLogin>
+      <RightSide class="column"></RightSide>
     </div>
     
+
 
   </div>
 </template>>
 
 <script>
 
-import LeftSideLogin from '../../components/login/left-side-login.component';
-import RightSideLogin from '../../components/login/right-side-login.component';
+import LeftSide from '../../components/register/left-side-register.component';
+import RightSide from '../../components/register/right-side-register.component'
 
 export default {
-  name: 'LoginPage',
-  components: {
-    LeftSideLogin,
-    RightSideLogin
-  }
+  name: 'RegsiterPage',
+  components: { LeftSide, RightSide},
 
 }
 </script>>

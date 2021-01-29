@@ -1,7 +1,7 @@
 <template>
   <div class="left-side-login">
     <img src="../../assets/Group-310-1.png" alt="logo" class="top-logo">
-      <img src="../../assets/Image-291-2.png" alt="meeting-img" class='left-side-login-meeting-img'>
+    <img src="../../assets/Image-291-2.png" alt="meeting-img" class='left-side-login-meeting-img'>
   </div>
 </template>>
 
